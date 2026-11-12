@@ -1,0 +1,108 @@
+-- ==============================================================================
+-- DAET IMMERSIVE CULTURAL HERITAGE EXPERIENCE
+-- Initial Seed Data: 3 Published Heritage Sites (English)
+-- Execute this script in your Supabase SQL Editor: https://supabase.com/dashboard/project/_/sql
+-- ==============================================================================
+
+INSERT INTO public.heritage_sites (
+  id,
+  slug,
+  title,
+  short_description,
+  historical_context,
+  significance,
+  category,
+  barangay,
+  municipality,
+  province,
+  latitude,
+  longitude,
+  year_built,
+  cover_image_url,
+  gallery_images,
+  panorama_360_url,
+  audio_guide_url,
+  qr_code_url,
+  is_published
+)
+VALUES
+  (
+    'a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d',
+    'first-rizal-monument',
+    'First Rizal Monument',
+    'The world''s first monument erected in honor of Philippine national hero Dr. Jose Rizal, constructed in 1898 by revolutionary forces.',
+    'Constructed in Daet, Camarines Norte following the proclamation of the First Philippine Republic under General Emilio Aguinaldo in December 1898. Led by Lt. Col. Ildefonso Alegre and Lt. Col. Antonio Sanz, the monument was funded entirely through voluntary community contributions from the citizens and Masons of Camarines Norte.',
+    'A declared National Historical Landmark that stands as testament to the early reverence and patriotism of the Bicolano people for Dr. Jose Rizal''s ideals, preceding all other monuments built in the Philippines and across the globe.',
+    'monument',
+    'Barangay Poblacion',
+    'Daet',
+    'Camarines Norte',
+    14.1122,
+    122.9553,
+    '1898',
+    '/images/first-rizal-monument.jpg',
+    ARRAY['/images/first-rizal-monument.jpg'],
+    'https://pannellum.org/images/alma.jpg',
+    NULL,
+    NULL,
+    true
+  ),
+  (
+    'b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e',
+    'daet-cathedral-san-juan-bautista',
+    'St. John the Baptist Parish Cathedral',
+    'Historic cathedral and ecclesiastical center of Daet, originally founded by Franciscan missionaries in 1611.',
+    'The parish of Daet is among the earliest founded in the province of Camarines Norte by the Franciscan Order. Although rebuilt and restored across centuries following typhoons and wartime, its spiritual and architectural legacy endures as the cathedral seat of the Diocese of Daet.',
+    'A historic beacon of faith and enduring communal devotion for the Daeteño people, preserving more than four centuries of liturgical history, sacred traditions, and community heritage.',
+    'religious',
+    'Barangay IV (Poblacion)',
+    'Daet',
+    'Camarines Norte',
+    14.1138,
+    122.9547,
+    '1611',
+    '/images/daet-cathedral.jpg',
+    ARRAY['/images/daet-cathedral.jpg'],
+    'https://pannellum.org/images/cerro-toco-0.jpg',
+    NULL,
+    NULL,
+    true
+  ),
+  (
+    'c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f',
+    'daet-municipal-hall-plaza',
+    'Daet Municipal Hall & Civic Plaza',
+    'Historic colonial civic landmark and town plaza, serving as the civic heart of Daet and the world-renowned Pineapple Festival.',
+    'The historic civic hall and surrounding plaza have served as the administrative and cultural nexus of Daet since the early 20th century. It hosts the annual Pinyasan (Pineapple Festival), an internationally celebrated festival paying homage to the sweet ''Formosa'' pineapple cultivated across Daet.',
+    'Represents the agricultural heritage, civic governance, cultural arts, and resilient community spirit of the capital town of Daet.',
+    'architectural',
+    'Barangay Pamorangon',
+    'Daet',
+    'Camarines Norte',
+    14.1114,
+    122.9568,
+    '1925',
+    '/images/daet-municipal-hall.jpg',
+    ARRAY['/images/daet-municipal-hall.jpg'],
+    NULL,
+    NULL,
+    NULL,
+    true
+  )
+ON CONFLICT (slug) DO UPDATE
+SET
+  title = EXCLUDED.title,
+  short_description = EXCLUDED.short_description,
+  historical_context = EXCLUDED.historical_context,
+  significance = EXCLUDED.significance,
+  category = EXCLUDED.category,
+  barangay = EXCLUDED.barangay,
+  municipality = EXCLUDED.municipality,
+  province = EXCLUDED.province,
+  latitude = EXCLUDED.latitude,
+  longitude = EXCLUDED.longitude,
+  year_built = EXCLUDED.year_built,
+  cover_image_url = EXCLUDED.cover_image_url,
+  gallery_images = EXCLUDED.gallery_images,
+  panorama_360_url = EXCLUDED.panorama_360_url,
+  is_published = EXCLUDED.is_published;
